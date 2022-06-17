@@ -1,0 +1,57 @@
+create database helthinsurance;
+use helthinsurance;
+create table person(driver_id varchar(10), name varchar(20), address varchar(20), primary key(driver_id));
+show tables;
+desc person;
+create table car(reg_no varchar(10), model char(10), year int, primary key(reg_no)); 
+
+create table accident(report_num int, date date, location varchar(10), primary key(report_num)); 
+
+create table owns(driver_id varchar(10), reg_no varchar(10), 
+foreign key(driver_id) references person(driver_id), 
+foreign key(reg_no) references car(reg_no));
+
+create table participated(driver_id varchar(10), reg_no varchar(10), report_num int, damage_amount int, 
+foreign key(driver_id) references person(driver_id), 
+foreign key(reg_no) references car(reg_no), 
+foreign key(report_num) references accident(report_num)); 
+
+insert into person values('KA1','Ayman', 'Bangalore'); 
+insert into person values('KA2', 'Vishnu', 'Bihar');
+insert into person values('MI3', 'Vijaya', 'Mirzapur');
+insert into person values('MA4', 'Cherrisha', 'Mangalore'); 
+insert into person values('ABD9', 'Anson Konnoth Babu', 'Abu Dhabi'); 
+
+insert into car values('KA12JP234','kia', 2017);
+insert into car values('BI01GP097','audi', 2019);
+insert into car values('UP72MI396', 'mercedes', 2020); 
+insert into car values('KA24MA887', 'tesla', 2018); 
+insert into car values('AB0020', 'ferrari', 2016); 
+
+insert into accident values(21,'2019-02-02','jp nagar'); 
+insert into accident values(32,'2020-10-03','hsr layout');
+insert into accident values(02,'2022-01-30','bellendur');
+insert into accident values(48,'2019-04-07','mangalore'); 
+insert into accident values(14,'2017-09-10','corniche'); 
+
+insert into owns values('KA1','KA12JP234'); 
+INSERT INTO owns VALUES('KA2','BI01GP097'); 
+INSERT INTO owns values('MA4','KA24MA887'); 
+INSERT INTO OWNS VALUES('ABD9','AB0020'); 
+INSERT INTO OWNS VALUES('MI3','UP72MI396'); 
+
+INSERT INTO participated VALUES('KA1','KA12JP234',21, 45000); 
+INSERT INTO participated values('KA2','BI01GP097',32, 50000); 
+insert into participated values('MI3','UP72MI396',02, 20000); 
+insert into participated values('MA4','KA24MA887',48, 125000); 
+INSERT INTO participated values('ABD9','AB0020',14, 70000); 
+
+update participated set damage_amount = 25000 where report_num = 21; 
+
+insert into accident values(34, '2013-02-04', 2013); 
+
+select count(*) from accident where date like '2018'; 
+select count(*) from accident where date like '2019'; 
+
+
+select count(*) from car where model='tesla';
