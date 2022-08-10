@@ -1,6 +1,6 @@
 Create database Enroll;
 use Enroll;
-CREATE TABLE tstudents
+CREATE TABLE student
 (
      regno VARCHAR(15),
      name VARCHAR(20),
