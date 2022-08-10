@@ -1,5 +1,5 @@
-Create database tStu_enrollment;
-use tStu_enrollment;
+Create database Enroll;
+USE enroll;
 CREATE TABLE tstudents
 (
      regno VARCHAR(15),
